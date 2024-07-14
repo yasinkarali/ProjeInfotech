@@ -14,6 +14,7 @@ namespace YazilimKurs.Entity.Concrete
         public decimal Price { get; set; }
         public bool IsActive { get; set; }
         public int TeacherId { get; set; }
+        public string ImageUrl { get; set; }
 
         public Teacher Teacher { get; set; }
         public List<CourseStudent> CourseStudents { get; set; }

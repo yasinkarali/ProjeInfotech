@@ -10,8 +10,8 @@ using YazilimKurs.Data;
 namespace YazilimKurs.Data.Migrations
 {
     [DbContext(typeof(YazilimKursDbContext))]
-    [Migration("20240707145525_YazilimKursSqlitegecis")]
-    partial class YazilimKursSqlitegecis
+    [Migration("20240714170401_InitialDb")]
+    partial class InitialDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,6 +26,10 @@ namespace YazilimKurs.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

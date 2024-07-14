@@ -5,7 +5,7 @@
 namespace YazilimKurs.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class YazilimKursSqlitegecis : Migration
+    public partial class InitialDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -52,7 +52,8 @@ namespace YazilimKurs.Data.Migrations
                     Description = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<decimal>(type: "TEXT", nullable: false),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TeacherId = table.Column<int>(type: "INTEGER", nullable: false)
+                    TeacherId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ImageUrl = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
