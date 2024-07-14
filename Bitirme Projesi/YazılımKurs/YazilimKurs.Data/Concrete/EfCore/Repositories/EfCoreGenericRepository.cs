@@ -50,15 +50,7 @@ namespace YazilimKurs.Data.Concrete.EfCore.Repositories
             return entity;
         }
 
-        // public TEntity GetWithFilter(Expression<Func<TEntity, bool>> filter)
-        // {
-        //     return _dbContext.Set<TEntity>().SingleOrDefault(filter);
-        // }
-
-        // public List<TEntity> GetAllWithFilter(Expression<Func<TEntity, bool>> filter)
-        // {
-        //     return _dbContext.Set<TEntity>().Where(filter).ToList();
-        // }
+        
 
 
     }

@@ -14,9 +14,7 @@ namespace YazilimKurs.Data.Abstract
         Task<TEntity> GetByIdAsync(int id);
         Task<TEntity> UpdateAsync(TEntity entity);
         Task DeleteAsync(TEntity entity);
-    //     TEntity GetWithFilter(Expression<Func<TEntity, bool>> filter);
-    //     List<TEntity> GetAllWithFilter(Expression<Func<TEntity, bool>> filter);
-    //
+    
    }
 
 }

@@ -50,20 +50,6 @@ namespace YazilimKurs.Api.Controllers
             return Ok(response);
         }
 
-
-        // [HttpGet("getCourcesByTeacherId/{id}")]
-
-        // public IActionResult GetByTeacherId(int id) // mg
-        // {
-        //     var response = _courseService.GetAllByTeacherId(id);
-        //     if (!response.IsSucceeded)
-        //     {
-        //         return NotFound(response);
-        //     }
-
-        //     return Ok(response);
-        // }
-
         [HttpGet("active")]
 
         public async Task<IActionResult> GetActiveCourses()

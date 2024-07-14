@@ -22,7 +22,7 @@ namespace YazilimKurs.Service.Abstract
 
         Task<Response<List<CourseDto>>> GetCoursesWithTeacherIdAsync(int id);
 
-        // Response<List<CourseDto>> GetAllByTeacherId(int id);
+      
 
 
 

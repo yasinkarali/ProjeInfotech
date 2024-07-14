@@ -73,18 +73,7 @@ namespace YazilimKurs.Service.Concrete
             return Response<List<CourseDto>>.Success(courseDtoList, 200);
         }
 
-        // public Response<List<CourseDto>> GetAllByTeacherId(int id)
-        // {
-        //     var courses = _courseRepository.GetAllWithFilter(o => o.TeacherId == id);
-        //     if (courses == null)
-        //     {
-        //         return Response<List<CourseDto>>.Fail("Bu id'li kurs bulunamadı", 404);
-        //     }
-        //     List<CourseDto> coursesDto = _mapper.Map<List<CourseDto>>(courses);
-
-        //     return Response<List<CourseDto>>.Success(coursesDto, 200);
-
-        // }
+       
 
         public async Task<Response<CourseDto>> GetByIdAsync(int id)
         {
