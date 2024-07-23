@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YazilimKurs.Service.Abstract;
 using YazilimKurs.Shared.Dtos;
+using YazilimKurs.Shared.Helpers.Abstract;
 
 namespace YazilimKurs.Api.Controllers
 {
@@ -13,10 +14,12 @@ namespace YazilimKurs.Api.Controllers
     public class TeacherController : ControllerBase
     {
         private readonly ITeacherService _teacherService;
+        private readonly IImageHelper _imageHelper;
 
-        public TeacherController(ITeacherService teacherService)
+        public TeacherController(ITeacherService teacherService, IImageHelper imageHelper)
         {
             _teacherService = teacherService;
+            _imageHelper = imageHelper;
         }
         [HttpPost]
         public async Task<IActionResult> Create(AddTeacherDto addTeacherDto)
@@ -89,6 +92,16 @@ namespace YazilimKurs.Api.Controllers
                 return NotFound(response);
             }
             return Ok();
+        }
+        [HttpPost("addimage")]
+        public async Task<IActionResult> ImageUpload(IFormFile file)
+        {
+            var response = await _imageHelper.Upload(file);
+            if (!response.IsSucceeded)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
         }
     }
 }

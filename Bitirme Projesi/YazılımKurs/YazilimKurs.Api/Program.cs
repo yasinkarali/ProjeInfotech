@@ -5,6 +5,8 @@ using YazilimKurs.Data.Abstract;
 using YazilimKurs.Data.Concrete.EfCore.Repositories;
 using YazilimKurs.Service.Abstract;
 using YazilimKurs.Service.Concrete;
+using YazilimKurs.Shared.Helpers.Abstract;
+using YazilimKurs.Shared.Helpers.Concrete;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,8 @@ builder.Services.AddScoped<ITeacherRepository, EfCoreTeacherRepository>();
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
+
+builder.Services.AddScoped<IImageHelper, ImageHelper>();
 
 
 builder.Services.AddEndpointsApiExplorer();

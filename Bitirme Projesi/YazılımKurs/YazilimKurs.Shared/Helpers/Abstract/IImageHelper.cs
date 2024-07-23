@@ -8,7 +8,7 @@ using YazilimKurs.Shared.ResponseDtos;
 
 namespace YazilimKurs.Shared.Helpers.Abstract
 {
-    public interface IUploadHelper
+    public interface IImageHelper
     {
         Task<Response<string>> Upload(IFormFile file);
     }

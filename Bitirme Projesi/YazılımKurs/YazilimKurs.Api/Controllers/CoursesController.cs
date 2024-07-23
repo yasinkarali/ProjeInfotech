@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using YazilimKurs.Service.Abstract;
 using YazilimKurs.Shared.Dtos;
+using YazilimKurs.Shared.Helpers.Abstract;
 
 namespace YazilimKurs.Api.Controllers
 {
@@ -10,9 +11,11 @@ namespace YazilimKurs.Api.Controllers
     public class CoursesController : ControllerBase
     {
         private readonly ICourseService _courseService;
-        public CoursesController(ICourseService courseService)
+        private readonly IImageHelper _imageHelper;
+        public CoursesController(ICourseService courseService, IImageHelper imageHelper)
         {
             _courseService = courseService;
+            _imageHelper = imageHelper;
         }
 
         [HttpPost]
@@ -96,6 +99,18 @@ namespace YazilimKurs.Api.Controllers
                 return NotFound(response);
             }
 
+            return Ok(response);
+        }
+
+
+        [HttpPost("addimage")]
+        public async Task<IActionResult> ImageUpload(IFormFile file)
+        {
+            var response = await _imageHelper.Upload(file);
+            if (!response.IsSucceeded)
+            {
+                return NotFound(response);
+            }
             return Ok(response);
         }
 
