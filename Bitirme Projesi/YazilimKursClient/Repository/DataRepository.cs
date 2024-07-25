@@ -15,18 +15,21 @@ namespace YazilimKursClient.Repository
 
         private static readonly List<CourseViewModel> _courses = [
             new CourseViewModel(){
-                Id = 1,Name="Html",Description="html temelleri",Price=250,TeacherName="Murat",ImageUrl="abc.png"
+                Id = 1,Name="Html",Description="html temelleri",Price=250,TeacherName="Murat Yücedağ",ImageUrl="abc.png"
             },
             new CourseViewModel(){
-                Id = 2,Name="Css",Description="css temelleri",Price=485,TeacherName="Engin",ImageUrl="abcd.png"
+                Id = 2,Name="Css",Description="css temelleri",Price=485,TeacherName="Engin Niyazi Ergül",ImageUrl="abcd.png"
             },
             new CourseViewModel(){
-                Id = 3,Name="Javascript",Description="JS temelleri",Price=120,TeacherName="Fahrettin",ImageUrl="abcde.png"
+                Id = 3,Name="Javascript",Description="JS temelleri",Price=120,TeacherName="Fahrettin Erdinç",ImageUrl="abcde.png"
             },
-            new CourseViewModel(){
-                Id = 4,Name="OOP",Description="OOP temelleri",Price=750,TeacherName="Zeynep",ImageUrl="abcdef.png"
-            }
-        ];
+			new CourseViewModel(){
+				Id = 4,Name="Java",Description="Java temelleri",Price=720,TeacherName="Murat Güven",ImageUrl="abcrdef.png"
+			},
+			new CourseViewModel(){
+				Id = 5,Name="Phyton",Description="Phyton temelleri",Price=350,TeacherName="Murat Yücedağ",ImageUrl="abctdef.png"
+			}
+		];
         public static List<CourseViewModel> GetCourses()
         {
             //Fake course bilgileri döndürecek
