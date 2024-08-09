@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using YazilimKurs.Data;
@@ -17,10 +18,16 @@ builder.Services.AddDbContext<YazilimKursDbContext>(options=>options.UseSqlite(b
 builder.Services.AddScoped<ICourseRepository, EfCoreCourseRepository>();
 builder.Services.AddScoped<IStudentRepository, EfCoreStudentRepository>();
 builder.Services.AddScoped<ITeacherRepository, EfCoreTeacherRepository>();
+builder.Services.AddScoped<ICardRepository, EfCoreCardRepository>();
+builder.Services.AddScoped<ICardItemRepository, EfCoreCardItemsRepository>();
+builder.Services.AddScoped<IOrderRepository, EfCoreOrderRepository>();
 
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<ICardService, CardService>();
+builder.Services.AddScoped<ICardItemService, CardItemService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddScoped<IImageHelper, ImageHelper>();
 

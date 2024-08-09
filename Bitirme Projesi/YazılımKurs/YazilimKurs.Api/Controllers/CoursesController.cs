@@ -1,4 +1,5 @@
 
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using YazilimKurs.Service.Abstract;
 using YazilimKurs.Shared.Dtos;
@@ -32,12 +33,12 @@ namespace YazilimKurs.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var response = await _courseService.GetAllAsync();
+            var response = await _courseService.GetAllWithTeacherNameAsync();
             if (!response.IsSucceeded)
             {
-                return NotFound(response);
+                return NotFound(JsonSerializer.Serialize(response));
             }
-            return Ok(response);
+            return Ok(JsonSerializer.Serialize(response));
         }
 
         [HttpGet("{id}")]
@@ -63,6 +64,17 @@ namespace YazilimKurs.Api.Controllers
                 return NotFound(response);
             }
             return Ok(response);
+        }
+        [HttpGet("home")]
+
+        public async Task<IActionResult> GetHomeCourses()
+        {
+            var response = await _courseService.GetHomeCoursesAsync();
+            if (!response.IsSucceeded)
+            {
+                return NotFound(JsonSerializer.Serialize(response));
+            }
+            return Ok(JsonSerializer.Serialize(response));
         }
 
         [HttpDelete("{id}")]
@@ -91,9 +103,9 @@ namespace YazilimKurs.Api.Controllers
 
         [HttpGet("GetCoursesWithTeacherId/{id}")]
 
-        public async Task<IActionResult> GetCoursesWithTeacherIdAsync(int id) 
+        public async Task<IActionResult> GetCoursesWithTeacherIdAsync(int id)
         {
-            var response = await _courseService.GetCoursesWithTeacherIdAsync(id);
+            var response = await _courseService.GetCoursesByTeacherIdAsync(id);
             if (!response.IsSucceeded)
             {
                 return NotFound(response);
@@ -106,7 +118,7 @@ namespace YazilimKurs.Api.Controllers
         [HttpPost("addimage")]
         public async Task<IActionResult> ImageUpload(IFormFile file)
         {
-            var response = await _imageHelper.Upload(file);
+            var response = await _imageHelper.Upload(file,"courses");
             if (!response.IsSucceeded)
             {
                 return NotFound(response);

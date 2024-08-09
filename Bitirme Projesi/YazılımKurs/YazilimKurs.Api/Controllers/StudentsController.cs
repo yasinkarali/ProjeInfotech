@@ -88,7 +88,7 @@ namespace YazilimKurs.Api.Controllers
         [HttpPost("addimage")]
         public async Task<IActionResult> ImageUpload(IFormFile file)
         {
-            var response = await _imageHelper.Upload(file);
+            var response = await _imageHelper.Upload(file,"students");
             if (!response.IsSucceeded)
             {
                 return NotFound(response);

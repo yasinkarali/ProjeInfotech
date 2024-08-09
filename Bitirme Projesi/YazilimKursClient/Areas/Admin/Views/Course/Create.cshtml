@@ -1,0 +1,132 @@
+﻿@model AddCourseModel
+  <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+     <form asp-area="Admin"
+          asp-controller="Course"
+          asp-action="Create" method="post" enctype="multipart/form-data">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Kurs Ekle</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6 d-flex justify-content-end">
+                    <a asp-area="Admin" asp-controller="Course" asp-action="Create"
+                       class="btn btn-success btn-sm"> Kaydet </a>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <!-- Main row -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <div class="card-body">
+                          <div class="row">
+                           <div class="col-md-9"> 
+                               <div class="row">
+                                   <div class="col-md-8">
+                                       <div class="form-group">
+                                            <label asp-for="Name"></label>
+                                            <input asp-for="Name" class="form-control" />
+                                            <span class="text-danger" asp-validation-for="Name"></span>
+                                       </div>
+                                            
+                                    </div>
+                                        <div class="col-md-4 pl-5">
+                                            <label>Anasayfa</label>
+                                            <div class="pt-1 ">
+                                                
+                                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch 
+                                                data-label-text="Anasayfa" asp-for="IsHome">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label asp-for="Price"></label>
+                                                <input asp-for="Price" class="form-control" />
+                                                <span class="text-danger" asp-validation-for="Price"></span>
+                                            </div>
+                                        </div>
+                                     
+                                       
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label asp-for="Description"></label>
+                                                <textarea class="form-control" asp-for="Description"></textarea>
+                                                <span class="text-danger" asp-validation-for="Description"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 ">
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control" id="image" name="image">
+                                                    <label class="input-group-text" for="image">Yükle</label>
+                                                    <span>@ViewBag.ImageErrorMessage</span>
+                                                </div>
+
+                                        </div>
+                               </div>
+                           </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                        <div class="form-group">
+                                            <label>Öğretmen</label>
+                                            <select class="form-control" asp-items="@Model.TeacherList" 
+                                            asp-for="TeacherId">
+                                               
+                                            </select>
+                                        </div>
+                                </div>
+                                  
+                             </div>
+                             
+                           </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    </form>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section Css {
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/admin/plugins/summernote/summernote-bs4.min.css">
+    <!-- image-uploader -->
+    <link rel="stylsheet" href="~/admin/plugins/image-uploader/image-uploader.min.css" />
+}
+
+
+ @section Js {
+    <script src="~/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/admin/plugins/image-uploader/image-uploader.min.js"></script>
+    <script>
+        $(function () {
+            // Summernote
+            $('#Properties').summernote({
+                height: 200
+            });
+           
+            $("input[data-bootstrap-switch]").each(function () {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            });
+            $(".input-images-1").imageUploader();
+        });
+
+    </script> 
+        }

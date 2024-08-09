@@ -16,13 +16,17 @@ namespace YazilimKurs.Service.Abstract
         Task<Response<CourseDto>> AddAsync(AddCourseDto addCourseDto); 
         Task<Response<List<CourseDto>>> GetAllAsync();
         Task<Response<List<CourseDto>>> GetActiveCoursesAsync();
+
+        Task<Response<List<CourseDto>>> GetHomeCoursesAsync();
         Task<Response<CourseDto>> UpdateAsync(EditCourseDto editCourseDto);
         Task<Response<CourseDto>> GetByIdAsync(int id);
         Task<Response<NoContent>> DeleteAsync(int id);
 
-        Task<Response<List<CourseDto>>> GetCoursesWithTeacherIdAsync(int id);
+        Task<Response<List<CourseDto>>> GetCoursesByTeacherIdAsync(int id);
+        Task<Response<List<CourseDto>>> GetAllWithTeacherNameAsync();
 
-      
+
+
 
 
 

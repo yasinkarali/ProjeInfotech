@@ -14,6 +14,7 @@ namespace YazilimKurs.Shared.Dtos
         public bool IsActive { get; set; }
         public string TeacherName { get; set; }
         public string ImageUrl { get; set; }
+        public bool IsHome { get; set; }
 
     }
 }

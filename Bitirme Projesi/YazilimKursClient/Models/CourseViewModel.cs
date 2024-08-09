@@ -9,31 +9,26 @@ namespace YazilimKursClient.Models
 {
     public class CourseViewModel
     {
-        [JsonPropertyName("id")]
+        [JsonPropertyName("Id")]
         public int Id { get; set; }
 
-        [JsonPropertyName("name")]
-        [DisplayName("Kurs Adý")]
+        [JsonPropertyName("Name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("description")]
-        [DisplayName("Açýklama")]
-
+        [JsonPropertyName("Description")]
         public string Description { get; set; }
 
-        [JsonPropertyName("price")]
-        [DisplayName("Fiyat")]
+        [JsonPropertyName("Price")]
+        public decimal Price { get; set; }
 
-        public double Price { get; set; }
+        
 
-        [JsonPropertyName("teacherName")]
-        [DisplayName("Öðretmen Adý")]
-
+        [JsonPropertyName("TeacherName")]
         public string TeacherName { get; set; }
 
-        [JsonPropertyName("imageUrl")]
-        [DisplayName("Resim")]
-
+        [JsonPropertyName("ImageUrl")]
         public string ImageUrl { get; set; }
+
+     
     }
 }

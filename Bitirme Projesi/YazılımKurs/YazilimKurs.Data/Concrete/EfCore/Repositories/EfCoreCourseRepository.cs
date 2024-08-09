@@ -26,11 +26,27 @@ namespace YazilimKurs.Data.Concrete.EfCore.Repositories
            return courses;
         }
 
-        public async Task<List<Course>> GetCoursesWithTeacherIdAsync(int id)
+        public async Task<List<Course>> GetCoursesByTeacherIdAsync(int id)
         {
             List<Course> courses = await  Context.Courses.Where(x => x.TeacherId==id).ToListAsync();
             return courses;
             
+        }
+
+        public async Task<List<Course>> GetCoursesWithTeacherNameAsync()
+        {
+            List<Course> courses = await Context
+                .Courses
+                .Include(x => x.Teacher)
+                .ToListAsync();
+            return courses;
+        }
+
+
+        public async Task<List<Course>> GetHomeCourseAsync()
+        {
+            List<Course> courses = await Context.Courses.Where(c=>c.IsHome && c.IsActive).ToListAsync();
+            return courses;
         }
     }
 }

@@ -24,7 +24,10 @@ namespace YazilimKurs.Service.Mapping
             CreateMap<Teacher, EditTeacherDto>().ReverseMap();
 
 
-
+            CreateMap<Card, CardDto>().ReverseMap();
+            CreateMap<CardItem, CardItemDto>().ReverseMap();
+            CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<OrderItem, OrderItemDto>().ReverseMap();
 
 
 

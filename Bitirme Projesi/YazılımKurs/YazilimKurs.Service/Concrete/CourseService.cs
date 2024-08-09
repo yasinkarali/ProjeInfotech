@@ -73,7 +73,20 @@ namespace YazilimKurs.Service.Concrete
             return Response<List<CourseDto>>.Success(courseDtoList, 200);
         }
 
-       
+        public async Task<Response<List<CourseDto>>> GetAllWithTeacherNameAsync()
+        {
+
+            var courses = await _courseRepository.GetCoursesWithTeacherNameAsync();
+
+            if (courses == null || courses.Count == 0)
+            {
+                return Response<List<CourseDto>>.Fail("Hiç kayıt bulunmuyor", 404);
+            }
+
+            List<CourseDto> courseDtoList = _mapper.Map<List<CourseDto>>(courses);
+
+            return Response<List<CourseDto>>.Success(courseDtoList, 200);
+        }
 
         public async Task<Response<CourseDto>> GetByIdAsync(int id)
         {
@@ -88,17 +101,28 @@ namespace YazilimKurs.Service.Concrete
 
         }
 
-        public async Task<Response<List<CourseDto>>> GetCoursesWithTeacherIdAsync(int id)
+        public async Task<Response<List<CourseDto>>> GetCoursesByTeacherIdAsync(int id)
         {
-            var courses = await _courseRepository.GetCoursesWithTeacherIdAsync(id);
-            if(courses == null)
+            var courses = await _courseRepository.GetCoursesByTeacherIdAsync(id);
+            if (courses == null)
             {
-                return Response<List<CourseDto>>.Fail("Bu id'li öğretmene ait kurslar bulunamadı",404);
+                return Response<List<CourseDto>>.Fail("Bu id'li öğretmene ait kurslar bulunamadı", 404);
             }
             var coursesList = _mapper.Map<List<CourseDto>>(courses);
             return Response<List<CourseDto>>.Success(coursesList, 200);
 
 
+        }
+
+        public async Task<Response<List<CourseDto>>> GetHomeCoursesAsync()
+        {
+            var courses = await _courseRepository.GetHomeCourseAsync();
+            if (courses == null)
+            {
+                return Response<List<CourseDto>>.Fail("Hiç anasayfa kurs bulunamadı", 404);
+            }
+            var coursesList = _mapper.Map<List<CourseDto>>(courses);
+            return Response<List<CourseDto>>.Success(coursesList, 200);
         }
 
         public async Task<Response<CourseDto>> UpdateAsync(EditCourseDto editCourseDto)

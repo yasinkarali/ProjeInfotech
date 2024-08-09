@@ -10,7 +10,9 @@ namespace YazilimKurs.Data.Abstract
     {
         Task<List<Course>> GetActiveCoursesAsync();
 
-        Task<List<Course>> GetCoursesWithTeacherIdAsync(int id);
+        Task<List<Course>> GetCoursesByTeacherIdAsync(int id);
+        Task<List<Course>> GetCoursesWithTeacherNameAsync();
+        Task<List<Course>> GetHomeCourseAsync();
 
 
     }
