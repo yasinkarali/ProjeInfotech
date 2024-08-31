@@ -8,9 +8,9 @@ using YazilimKurs.Entity.Concrete;
 
 namespace YazilimKurs.Data.Concrete.EfCore.Repositories
 {
-    public class EfCoreCardItemsRepository:EfCoreGenericRepository<CardItem>,ICardItemRepository
+    public class EfCoreCartItemsRepository:EfCoreGenericRepository<CardItem>,ICartItemRepository
     {
-        public EfCoreCardItemsRepository(YazilimKursDbContext yazilimKursDbContext) : base(yazilimKursDbContext)
+        public EfCoreCartItemsRepository(YazilimKursDbContext yazilimKursDbContext) : base(yazilimKursDbContext)
         {
             
         }

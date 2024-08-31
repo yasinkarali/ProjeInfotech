@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YazilimKurs.Service.Abstract;
+using YazilimKurs.Service.Concrete;
 using YazilimKurs.Shared.Dtos;
 using YazilimKurs.Shared.Helpers.Abstract;
 
@@ -21,6 +22,18 @@ namespace YazilimKurs.Api.Controllers
             _teacherService = teacherService;
             _imageHelper = imageHelper;
         }
+
+        [HttpGet("LoginTeacher")]
+        public async Task<IActionResult> LoginTeacher(string username, string password)
+        {
+            var response = await _teacherService.GetTeacherByUsernameAndPasswordAsync(username, password);
+            if (!response.IsSucceeded)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(AddTeacherDto addTeacherDto)
         {

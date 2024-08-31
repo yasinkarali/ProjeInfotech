@@ -11,6 +11,7 @@ namespace YazilimKurs.Service.Abstract
     {
         Task<Response<StudentDto>> AddAsync(AddStudentDto addStudentDto);
         Task<Response<StudentDto>> GetStudentByUsernameAsync(string username);
+        Task<Response<StudentDto>> GetStudentByUsernameAndPasswordAsync(string username, string password);
         Task<Response<StudentDto>> UpdateAsync(EditStudentDto editStudentDto);
 
         Task<Response<List<StudentDto>>> GetAllAsync();

@@ -1,0 +1,27 @@
+﻿@model List<CourseModel>
+@{
+    ViewData["Title"] = "TeacherCourse";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<h2>Teacher Courses</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <ul>
+        @foreach (var course in Model)
+        {
+            <li>
+                <strong>Kurs Adı:</strong> @course.Name<br />
+                <strong>Kurs Açıklaması:</strong> @course.Description<br />
+                <strong>Kurs Ücreti:</strong> @course.Price<br />
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No courses found for this teacher.</p>
+}
+
+

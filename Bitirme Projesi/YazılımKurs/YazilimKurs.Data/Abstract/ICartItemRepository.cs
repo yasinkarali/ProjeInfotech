@@ -7,7 +7,7 @@ using YazilimKurs.Entity.Concrete;
 
 namespace YazilimKurs.Data.Abstract
 {
-    public interface ICardItemRepository:IGenericRepository<CardItem>
+    public interface ICartItemRepository:IGenericRepository<CardItem>
     {
     }
 }

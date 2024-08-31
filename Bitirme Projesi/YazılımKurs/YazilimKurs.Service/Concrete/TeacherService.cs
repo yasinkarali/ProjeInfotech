@@ -91,6 +91,24 @@ namespace YazilimKurs.Service.Concrete
             return Response<TeacherDto>.Success(teacherDto, 200);
         }
 
+        public async Task<Response<TeacherDto>> GetTeacherByUsernameAndPasswordAsync(string username, string password)
+        {
+            var teacher = await _teacherRepository.GetTeacherByUsernameAsync(username);
+            if (teacher == null)
+            {
+                return Response<TeacherDto>.Fail("Kullanıcı adı veya şifre yanlış", 404);
+            }
+
+            if (teacher.Password != password)
+            {
+                return Response<TeacherDto>.Fail("Kullanıcı adı veya şifre yanlış", 404);
+            }
+
+            var teacherDto = _mapper.Map<TeacherDto>(teacher);
+            return Response<TeacherDto>.Success(teacherDto, 200);
+
+        }
+
         public async Task<Response<TeacherDto>> UpdateAsync(EditTeacherDto editTeacherDto)
         {
             Teacher editedTeacher = _mapper.Map<Teacher>(editTeacherDto);

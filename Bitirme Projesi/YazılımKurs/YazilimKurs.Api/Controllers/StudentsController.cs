@@ -22,6 +22,17 @@ namespace YazilimKurs.Api.Controllers
             _imageHelper = imageHelper;
         }
 
+        [HttpGet("LoginStudent")]
+        public async Task<IActionResult> LoginStudent(string username, string password)
+        {
+            var response = await _studentService.GetStudentByUsernameAndPasswordAsync(username, password);
+            if (!response.IsSucceeded)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(AddStudentDto addStudentDto)
         {

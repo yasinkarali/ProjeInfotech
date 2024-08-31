@@ -18,9 +18,12 @@ builder.Services.AddDbContext<YazilimKursDbContext>(options=>options.UseSqlite(b
 builder.Services.AddScoped<ICourseRepository, EfCoreCourseRepository>();
 builder.Services.AddScoped<IStudentRepository, EfCoreStudentRepository>();
 builder.Services.AddScoped<ITeacherRepository, EfCoreTeacherRepository>();
-builder.Services.AddScoped<ICardRepository, EfCoreCardRepository>();
-builder.Services.AddScoped<ICardItemRepository, EfCoreCardItemsRepository>();
+builder.Services.AddScoped<ICartRepository, EfCoreCartRepository>();
+builder.Services.AddScoped<ICartItemRepository, EfCoreCartItemsRepository>();
 builder.Services.AddScoped<IOrderRepository, EfCoreOrderRepository>();
+builder.Services.AddScoped<ICourseStudentRepository, EfCoreCourseStudentRepository>();
+
+
 
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<IStudentService, StudentService>();

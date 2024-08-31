@@ -12,8 +12,9 @@
                     <h1 class="m-0">Kurs Ekle</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6 d-flex justify-content-end">
-                    <a asp-area="Admin" asp-controller="Course" asp-action="Create"
-                       class="btn btn-success btn-sm"> Kaydet </a>
+                 @*    <a asp-area="Admin" asp-controller="Course" asp-action="Create"
+                       class="btn btn-success btn-sm"> Kaydet </a> *@
+                        <input type="submit" class="btn btn-success btn-sm" value="Kaydet" />
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -118,7 +119,7 @@
     <script>
         $(function () {
             // Summernote
-            $('#Properties').summernote({
+            $('#Description').summernote({
                 height: 200
             });
            

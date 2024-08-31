@@ -21,8 +21,10 @@ namespace YazilimKursClient.Areas.Admin.Models
 
         [JsonPropertyName("TeacherName")]
         public string TeacherName { get; set; }
+		[JsonPropertyName("TeacherId")]
+		public int TeacherId { get; set; }
 
-        [JsonPropertyName("ImageUrl")]
+		[JsonPropertyName("ImageUrl")]
         public string ImageUrl { get; set; }
 
         [JsonPropertyName("IsHome")]

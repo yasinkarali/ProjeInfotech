@@ -11,6 +11,7 @@ namespace YazilimKurs.Service.Abstract
     {
         Task<Response<TeacherDto>> AddAsync(AddTeacherDto addTeacherDto);
         Task<Response<TeacherDto>> GetTeacherByUsernameAsync(string username);
+        Task<Response<TeacherDto>> GetTeacherByUsernameAndPasswordAsync(string username, string password);
         Task<Response<TeacherDto>> GetTeacherByNameAsync(string name);
 
 

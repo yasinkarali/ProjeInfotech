@@ -1,16 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using System.IO;
-using System.Net.Http;
-using System.Text.Json;
+using System.Text;
 using YazilimKursClient.Areas.Admin.Models;
 using YazilimKursClient.Extensions;
 
 
 namespace YazilimKursClient.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Student,Teacher")]
     [Area("Admin")]
     public class CourseController : Controller
     {
@@ -32,8 +31,8 @@ namespace YazilimKursClient.Areas.Admin.Controllers
             }
             return View(rootCourses.Data);
         }
-
-        [HttpGet]
+		[Authorize(Roles = "Teacher")]
+		[HttpGet]
         public async Task<IActionResult> Create()
         {
 
@@ -72,8 +71,9 @@ namespace YazilimKursClient.Areas.Admin.Controllers
             return View(courseModel);
         }
 
+		[Authorize(Roles = "Teacher")]
 
-        [HttpPost]
+		[HttpPost]
 
         public async Task<IActionResult> Create(AddCourseModel addCourseModel,IFormFile image)
 
@@ -88,7 +88,7 @@ namespace YazilimKursClient.Areas.Admin.Controllers
                         var imageContent = new MultipartFormDataContent();
                         byte[] bytes = stream.ToByteArray();
                         imageContent.Add(new ByteArrayContent(bytes), "file", image.FileName);
-                        HttpResponseMessage responseMessage = await httpClient.PostAsync("http://localhost:5502/api/Teacher", imageContent);
+                        HttpResponseMessage responseMessage = await httpClient.PostAsync("http://localhost:5502/api/Courses/addimage", imageContent);
                         var responseString = await responseMessage.Content.ReadAsStringAsync();
                         //var response = JsonSerializer.Deserialize<Root<ImageModel>>(responseString);
                         var response = JsonConvert.DeserializeObject<Root<ImageModel>>(responseString);
@@ -100,11 +100,23 @@ namespace YazilimKursClient.Areas.Admin.Controllers
                         {
                             Console.Write(response.Error);
                         }
-
-
                     }
+
+
+                    addCourseModel.ImageUrl = imageUrl;
+                    // kurs ekle
+                    var serializeModel = System.Text.Json.JsonSerializer.Serialize(addCourseModel);
+                    var stringContent = new StringContent(serializeModel, Encoding.UTF8, "application/json");
+                    var result = await httpClient.PostAsync("http://localhost:5502/api/Courses", stringContent);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+
+
                 }
-                    return RedirectToAction("Index");
+               
             }
             var rootTeachers = new Root<List<TeacherModel>>();
             using (var httpClient = new HttpClient())

@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace YazilimKursClient.Models
+namespace YazilimKursClient.Areas.Admin.Models
 {
-    public class StudentViewModel
+    public class StudentModel
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }

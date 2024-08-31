@@ -14,7 +14,7 @@ namespace YazilimKurs.Shared.Dtos
         public int CourseId { get; set; }
         public CourseDto course { get; set; }
         public int CardId { get; set; }
-       
+
         [JsonIgnore]
         public CardDto card { get; set; }
         public int Quantity { get; set; }

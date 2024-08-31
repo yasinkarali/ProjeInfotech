@@ -1,4 +1,5 @@
-﻿  <!-- Header Section Begin -->
+﻿@using System.Security.Claims
+  <!-- Header Section Begin -->
 <header class="header">
     <div class="container-fluid">
         <div class="row">
@@ -17,8 +18,21 @@
             <div class="col-lg-3">
                 <div class="header__right">
                     <div class="header__right__auth">
-                        <a href="#">Giriş Yap</a>
-                        <a href="#">Kayıt Ol</a>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            var name = User.Claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault().Value;
+                            <a href="/admin/course">Hoşgeldin @name</a>
+                            <a href="/admin/user/logout">Çıkış Yap</a>
+                        }
+                        else
+                        {
+                            <a href="/admin/user/login">Giriş Yap</a>
+                            <a href="/admin/user/register">Kayıt Ol</a>
+                        }
+
+
+                      
                     </div>
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>
@@ -31,7 +45,7 @@
                         <li>
                             <a asp-area="" asp-controller="Card" asp-action="Index">
                                 <span class="icon_bag_alt"></span>
-                                <div class="tip"></div>
+                                <div class="tip">2</div>
                             </a>
                         </li>
                     </ul>

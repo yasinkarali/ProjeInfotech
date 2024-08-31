@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using YazilimKursClient.Models;
 
 namespace YazilimKursClient.Controllers
 {
+
+    //[Authorize(Roles = "Student")]
     public class CardController : Controller
     {
 

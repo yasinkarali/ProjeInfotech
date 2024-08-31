@@ -7,7 +7,7 @@ using YazilimKurs.Entity.Concrete;
 
 namespace YazilimKurs.Data.Abstract
 {
-    public interface ICardRepository:IGenericRepository<Card>
+    public interface ICartRepository:IGenericRepository<Card>
     {
         Task<Card> GetCardByUserIdAsync(string userId);
     }

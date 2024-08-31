@@ -12,12 +12,29 @@ namespace YazilimKurs.Service.Concrete
     public class CourseService : ICourseService
     {
         private readonly ICourseRepository _courseRepository;
+        private readonly ICourseStudentRepository _courseStudentRepository;
         private readonly IMapper _mapper;
 
-        public CourseService(ICourseRepository courseRepository, IMapper mapper)
+        public CourseService(ICourseRepository courseRepository, IMapper mapper, ICourseStudentRepository courseStudentRepository)
         {
             _courseRepository = courseRepository;
             _mapper = mapper;
+            _courseStudentRepository = courseStudentRepository;
+        }
+        public async Task<Response<List<CourseDto>>> GetCourseStudentsByStudentIdAsync(int studentId)
+        {
+            // TODO 
+            var coursesStudents = await _courseStudentRepository.GetCourseStudentsByStudentIdAsync(studentId);
+
+
+            var courses = await _courseRepository.GetActiveCoursesAsync();
+            if (courses == null)
+            {
+                return Response<List<CourseDto>>.Fail("Aktif kurs bulunamadı", 404);
+            }
+            var coursesList = _mapper.Map<List<CourseDto>>(courses);
+            return Response<List<CourseDto>>.Success(coursesList, 200);
+
         }
         public async Task<Response<CourseDto>> AddAsync(AddCourseDto addCourseDto)
         {

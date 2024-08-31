@@ -1,7 +1,22 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+options =>
+{
+    options.Cookie.Name = "Yaska.Auth";
+    options.LoginPath = "/Admin/User/Login";
+    options.AccessDeniedPath = "/Admin/User/Login";
+});
+
+builder.Services.AddSession();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 
@@ -18,6 +33,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapAreaControllerRoute(
@@ -32,4 +49,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+app.UseSession();
 app.Run();

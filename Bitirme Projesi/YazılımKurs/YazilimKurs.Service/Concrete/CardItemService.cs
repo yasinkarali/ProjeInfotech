@@ -14,11 +14,11 @@ namespace YazilimKurs.Service.Concrete
 {
     public class CardItemService : ICardItemService
     {
-        private readonly ICardItemRepository _cardItemRepository;
-        private readonly ICardRepository _cardRepository;
+        private readonly ICartItemRepository _cardItemRepository;
+        private readonly ICartRepository _cardRepository;
         private readonly IMapper _mapper;
 
-        public CardItemService(ICardItemRepository cardItemRepository, IMapper mapper, ICardRepository cardRepository)
+        public CardItemService(ICartItemRepository cardItemRepository, IMapper mapper, ICartRepository cardRepository)
         {
             _cardItemRepository = cardItemRepository;
             _mapper = mapper;
