@@ -11,6 +11,6 @@ namespace YazilimKurs.Entity.Concrete
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }
         public string UserId { get; set; }
-        public List<CardItem> CardItems { get; set; }
+        public List<CardItem> CardItems { get; set; } = new List<CardItem>();
     }
 }

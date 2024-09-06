@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xl-3 col-lg-2">
                 <div class="header__logo">
-					<a href="./index.html"><span>Yaska Eğitim</span></a>
+                    <a href="/home/index"><span>Yaska Eğitim</span></a>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-7">
@@ -21,8 +21,7 @@
 
                         @if (User.Identity.IsAuthenticated)
                         {
-                            var name = User.Claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault().Value;
-                            <a href="/admin/course">Hoşgeldin @name</a>
+                            <a href="/admin/course">Hoşgeldin @User?.Identity?.Name</a>
                             <a href="/admin/user/logout">Çıkış Yap</a>
                         }
                         else
@@ -37,15 +36,15 @@
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 <span class="icon_heart_alt"></span>
-                                <div class="tip">2</div>
+                                @* <div class="tip"></div> *@
                             </a>
                         </li>
                         <li>
                             <a asp-area="" asp-controller="Card" asp-action="Index">
                                 <span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
+                              @*   <div class="tip"></div> *@
                             </a>
                         </li>
                     </ul>

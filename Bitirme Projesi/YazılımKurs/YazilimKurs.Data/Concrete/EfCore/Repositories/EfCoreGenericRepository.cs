@@ -14,7 +14,7 @@ namespace YazilimKurs.Data.Concrete.EfCore.Repositories
         protected readonly DbContext _dbContext;
         public EfCoreGenericRepository(DbContext dbContext)
         {
-            _dbContext=dbContext;
+            _dbContext = dbContext;
         }
 
         public async Task<TEntity> CreateAsync(TEntity entity)
@@ -33,8 +33,8 @@ namespace YazilimKurs.Data.Concrete.EfCore.Repositories
 
         public async Task<List<TEntity>> GetAllAsync()
         {
-          List<TEntity> entities = await _dbContext.Set<TEntity>().ToListAsync();
-          return entities;
+            List<TEntity> entities = await _dbContext.Set<TEntity>().ToListAsync();
+            return entities;
         }
 
         public async Task<TEntity> GetByIdAsync(int id)
@@ -45,12 +45,12 @@ namespace YazilimKurs.Data.Concrete.EfCore.Repositories
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-             _dbContext.Set<TEntity>().Update(entity);
-            await _dbContext.SaveChangesAsync();
+            _dbContext.Set<TEntity>().Update(entity);
+            int result = await _dbContext.SaveChangesAsync();
             return entity;
         }
 
-        
+
 
 
     }

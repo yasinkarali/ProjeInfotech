@@ -65,6 +65,19 @@ namespace YazilimKurs.Api.Controllers
             }
             return Ok(response);
         }
+        [HttpGet("GetActiveCoursesWithCourseStudents")]
+
+        public async Task<IActionResult> GetActiveCoursesWithCourseStudents()
+        {
+            var response = await _courseService.GetActiveCoursesWithCourseStudentsAsync();
+            if (!response.IsSucceeded)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
+
+
         [HttpGet("home")]
 
         public async Task<IActionResult> GetHomeCourses()

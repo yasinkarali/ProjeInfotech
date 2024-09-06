@@ -1,27 +1,48 @@
-﻿<li class="nav-header">KURSLAR</li>
+﻿
 <li class="nav-item">
-    <a asp-area="Admin" asp-controller="Course" asp-action="Index" class="nav-link">
-        <i class="nav-icon fas fa-th"></i>
-        <p>
-            Kurs Listesi
-        </p>
-    </a>
+	<a href="/home/index" class="nav-link">
+		<i class="nav-icon fas fa-home"></i>
+		<p>Ana Sayfaya Dön</p>
+	</a>
 </li>
+<li class="nav-header">KURSLAR</li>
 <li class="nav-item">
-    <a asp-area="Admin" asp-controller="Course" asp-action="Create" class="nav-link">
-        <i class="nav-icon fas fa-th"></i>
-        <p>
-            Kurs Ekle
-        </p>
-    </a>
+	<a asp-area="Admin" asp-controller="Course" asp-action="Index" class="nav-link">
+		<i class="nav-icon fas fa-th"></i>
+		<p>
+			Kurs Listesi
+		</p>
+	</a>
 </li>
-
+@if (User.IsInRole("Teacher") == true)
+{
+	<li class="nav-item">
+		<a asp-area="Admin" asp-controller="Course" asp-action="Create" class="nav-link">
+			<i class="nav-icon fas fa-th"></i>
+			<p>
+				Kurs Ekle
+			</p>
+		</a>
+	</li>
+	
+}
+@if (User.IsInRole("Student") == true)
+{
+	<li class="nav-item">
+		<a asp-area="Admin" asp-controller="Order" asp-action="Index" class="nav-link">
+			<i class="nav-icon fas fa-th"></i>
+			<p>
+				Siparişler
+			</p>
+		</a>
+	</li>
+}
 <li class="nav-header">ÜYELİK İŞLEMLERİ</li>
 <li class="nav-item">
-    <a asp-area="admin" asp-controller="User" asp-action="Logout" class="nav-link">
-        <i class="nav-icon fas fa-th"></i>
-        <p>
-            Çıkış Yap
-        </p>
-    </a>
+	<a asp-area="admin" asp-controller="User" asp-action="Logout" class="nav-link">
+		<i class="nav-icon fas fa-th"></i>
+		<p>
+			Çıkış Yap
+		</p>
+	</a>
 </li>

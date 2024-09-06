@@ -57,8 +57,10 @@
 													<a class="btn btn-info btn-sm"
 													   asp-area="Admin"
 													   asp-controller="Course"
-													   asp-action="Update"
+													   asp-action="CourseView"
 													   asp-route-id="@course.Id">Göster</a>
+
+									
 												}
 										
 												@if (User.IsInRole("Teacher"))
@@ -70,10 +72,10 @@
 														<a class="btn btn-info btn-sm"
 														   asp-area="Admin"
 														   asp-controller="Course"
-														   asp-action="Update"
+														   asp-action="Edit"
 														   asp-route-id="@course.Id">Düzenle</a>
 
-														<a class="btn btn-info btn-sm"
+														<a class="btn btn-danger btn-sm"
 														   asp-area="Admin"
 														   asp-controller="Course"
 														   asp-action="Delete"

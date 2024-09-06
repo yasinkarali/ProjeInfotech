@@ -1,0 +1,65 @@
+﻿@model List<OrderViewModel>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">Siparişler</h1>
+				</div><!-- /.col -->
+				<div class="col-sm-6 d-flex justify-content-end">
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+
+			<!-- Main row -->
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<table id="data-table" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Sipariş Id</th>
+										<th>Sipariş Tarihi</th>
+										<th>Sipariş Tutarı</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var order in Model)
+									{
+										<tr>
+											<td>@order.Id</td>
+
+											<td>@order.OrderDate</td>
+											<td>@order.OrderItems.Sum(o => o.Price * o.Quantity)</td>
+				
+										</tr>
+									}
+								</tbody>
+
+							</table>
+						</div>
+						<!-- /.card-body -->
+					</div>
+				</div>
+			</div>
+			<!-- /.row (main row) -->
+		</div><!-- /.container-fluid -->
+	</section>
+	<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section Css {
+	@await Html.PartialAsync("_DataTablesCssPartial")
+}
+@section Js {
+	@await Html.PartialAsync("_DataTablesJsPartial")
+}

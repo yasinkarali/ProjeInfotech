@@ -10,6 +10,7 @@ namespace YazilimKurs.Service.Abstract
 {
     public interface ICardItemService
     {
+        Task<Response<List<CardItemDto>>> GetCardItemsByUserIdAsync(string userId);
         Task<Response<NoContent>> AddToCardAsync(AddToCardDto addToCardDto);
         Task<Response<NoContent>> ClearCardAsync(string userId);
         Task<Response<NoContent>> DeleteItemFromCardAsync(int cardItemId);

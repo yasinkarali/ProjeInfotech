@@ -21,6 +21,7 @@ builder.Services.AddScoped<ITeacherRepository, EfCoreTeacherRepository>();
 builder.Services.AddScoped<ICartRepository, EfCoreCartRepository>();
 builder.Services.AddScoped<ICartItemRepository, EfCoreCartItemsRepository>();
 builder.Services.AddScoped<IOrderRepository, EfCoreOrderRepository>();
+builder.Services.AddScoped<IOrderItemRepository, EfCoreOrderItemRepository>();
 builder.Services.AddScoped<ICourseStudentRepository, EfCoreCourseStudentRepository>();
 
 
@@ -31,6 +32,7 @@ builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddScoped<ICardService, CardService>();
 builder.Services.AddScoped<ICardItemService, CardItemService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 builder.Services.AddScoped<IImageHelper, ImageHelper>();
 

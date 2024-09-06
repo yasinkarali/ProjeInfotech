@@ -1,44 +1,120 @@
 ﻿@model List<CourseViewModel>
 @{
-    var courses = Model;
+	var courses = Model;
 }
-  <!-- Categories Section Begin -->
+<!-- Categories Section Begin -->
 <section class="categories">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6 p-0">
-                <div class="categories__item categories__large__item set-bg"
-                     data-setbg="/ui/img/courses/course-1.jpg">
-                    <div class="categories__text">
-                        <h1>@courses[0].Name</h1>
-                        <p> @courses[0].Description</p>
-                        <p>@courses[0].TeacherName</p>
-                            
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-6 p-0">
 
-                        <a href="#">Satın Al</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="row">
-                    @for (int i = 1; i < 5; i++)
-                    {
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="/ui/img/courses/course-@(i).jpg">
-                                <div class="categories__text">
-                                    <h4>@courses[i].Name</h4>
-                                    <p> @courses[i].Description</p>
-                                    <p> @courses[i].TeacherName</p>
-                                    <a href="#">Satın Al</a>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                   
-                   
-                </div>
-            </div>
-        </div>
-    </div>
+				@if (courses != null)
+				{
+
+					string imageUrl = "/ui/img/courses/category-1.jpg";
+
+					<div class="categories__item categories__large__item set-bg"
+						 data-setbg="@imageUrl">
+						<div class="categories__text">
+							<h1>@courses[0].Name</h1>
+							<p>
+								@Html.Raw(courses[0].Description)
+							</p>
+							<p>Eğitmen : @courses[0].TeacherName</p>
+							<form method="post" asp-controller="Card" asp-action="AddToCart">
+								<input type="hidden" name="courseId" value="@courses[0].Id" />
+								<button type="submit" class="btn btn-success">Satın Al</button>
+
+							</form>
+						</div>
+					</div>
+				}
+
+			</div>
+			<div class="col-lg-6">
+				<div class="row">
+					@if (courses != null && courses.Count >= 1)
+					{
+						string imageUrl = "/ui/img/courses/category-2.jpg";
+
+						<div class="col-lg-6 col-md-6 col-sm-6 p-0">
+							<div class="categories__item set-bg" data-setbg="@imageUrl">
+								<div class="categories__text">
+									<h4>@courses[1].Name</h4>
+									<p>	@Html.Raw(courses[1].Description)</p>
+									<p>Eğitmen : @courses[1].TeacherName</p>
+									<form method="post" asp-controller="Card" asp-action="AddToCart">
+										<input type="hidden" name="courseId" value="@courses[1].Id" />
+										<button type="submit" class="btn btn-success">Satın Al</button>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					}
+
+					@if (courses != null && courses.Count >= 2)
+					{
+						string imageUrl = "/ui/img/courses/category-3.jpg";
+
+						<div class="col-lg-6 col-md-6 col-sm-6 p-0">
+							<div class="categories__item set-bg" data-setbg="@imageUrl">
+								<div class="categories__text">
+									<h4>@courses[2].Name</h4>
+									<p>	@Html.Raw(courses[2].Description)</p>
+									<p>Eğitmen : @courses[2].TeacherName</p>
+									<form method="post" asp-controller="Card" asp-action="AddToCart">
+										<input type="hidden" name="courseId" value="@courses[2].Id" />
+										<button type="submit" class="btn btn-success">Satın Al</button>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					}
+
+					@if (courses != null && courses.Count >= 3)
+					{
+						string imageUrl = "/ui/img/courses/category-4.jpg";
+
+						<div class="col-lg-6 col-md-6 col-sm-6 p-0">
+							<div class="categories__item set-bg" data-setbg="@imageUrl">
+								<div class="categories__text">
+									<h4>@courses[3].Name</h4>
+									<p>	@Html.Raw(courses[3].Description)</p>
+									<p>Eğitmen : @courses[3].TeacherName</p>
+									<form method="post" asp-controller="Card" asp-action="AddToCart">
+										<input type="hidden" name="courseId" value="@courses[3].Id" />
+										<button type="submit" class="btn btn-success">Satın Al</button>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					}
+
+					@if (courses != null && courses.Count >= 4)
+					{
+						string imageUrl = "/ui/img/courses/category-5.jpg";
+
+						<div class="col-lg-6 col-md-6 col-sm-6 p-0">
+							<div class="categories__item set-bg" data-setbg="@imageUrl">
+								<div class="categories__text">
+									<h4>@courses[4].Name</h4>
+									<p>	@Html.Raw(courses[4].Description)</p>
+									<p>Eğitmen : @courses[4].TeacherName</p>
+									<form method="post" asp-controller="Card" asp-action="AddToCart">
+										<input type="hidden" name="courseId" value="@courses[4].Id" />
+										<button type="submit" class="btn btn-success">Satın Al</button>
+
+									</form>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <!-- Categories Section End -->

@@ -1,19 +1,21 @@
-﻿@model AddCourseModel
+﻿@model EditCourseModel
   <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
      <form asp-area="Admin"
           asp-controller="Course"
-          asp-action="Create" method="post" enctype="multipart/form-data">
+          asp-action="Edit" method="post" enctype="multipart/form-data">
+
+          <input type="hidden" asp-for="Id" />
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Kurs Ekle</h1>
+                    <h1 class="m-0">Kurs Düzenle</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6 d-flex justify-content-end">
-                    <a asp-area="Admin" asp-controller="Course" asp-action="Create"
-                       class="btn btn-success btn-sm"> Kaydet </a>
+              
+                        <input type="submit" class="btn btn-success btn-sm" value="Kaydet" />
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -111,22 +113,22 @@
 }
 
 
- @section Js {
+@section Js {
     <script src="~/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
     <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
     <script src="~/admin/plugins/image-uploader/image-uploader.min.js"></script>
     <script>
         $(function () {
             // Summernote
-            $('#Properties').summernote({
+            $('#Description').summernote({
                 height: 200
             });
-           
+
             $("input[data-bootstrap-switch]").each(function () {
                 $(this).bootstrapSwitch('state', $(this).prop('checked'));
             });
             $(".input-images-1").imageUploader();
         });
 
-    </script> 
-        }
+    </script>
+}

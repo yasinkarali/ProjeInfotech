@@ -29,5 +29,9 @@ namespace YazilimKursClient.Areas.Admin.Models
 
         [JsonPropertyName("IsHome")]
         public bool IsHome { get; set; }
-    }
+
+		[JsonPropertyName("StudentId")]
+		public int? StudentId { get; set; }
+
+	}
 }

@@ -40,6 +40,16 @@ namespace YazilimKurs.Api.Controllers
             }
             return Ok(JsonSerializer.Serialize(response));
         }
+        [HttpGet("getcarditems/{userId}")]
+        public async Task<IActionResult> GetCardItemsByUserId(string userId)
+        {
+            var response = await _cardItemService.GetCardItemsByUserIdAsync(userId);
+            if (!response.IsSucceeded)
+            {
+                return NotFound(JsonSerializer.Serialize(response));
+            }
+            return Ok(JsonSerializer.Serialize(response));
+        }
 
         [HttpPost]
         public async Task<IActionResult> AddToCard(AddToCardDto addToCardDto)

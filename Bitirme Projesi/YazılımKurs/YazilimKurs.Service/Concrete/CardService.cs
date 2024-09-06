@@ -25,12 +25,17 @@ namespace YazilimKurs.Service.Concrete
         public async Task<Response<CardDto>> GetCardByUserIdAsync(string userId)
         {
             Card card = await _cardRepository.GetCardByUserIdAsync(userId);
-            return Response<CardDto>.Success(_mapper.Map<CardDto>(card), 200);
+
+            var cartDto = _mapper.Map<CardDto>(card);
+            cartDto.CartItems = _mapper.Map<List<CardItemDto>>(card.CardItems);
+
+            return Response<CardDto>.Success(cartDto, 200);
         }
+
 
         public async Task<Response<NoContent>> InitializeCardAsync(string userId)
         {
-            Card card = new Card { UserId = userId };
+            Card card = new Card { UserId = userId, CreatedDate = DateTime.Now };
             await _cardRepository.CreateAsync(card);
             return Response<NoContent>.Success(201);
         }

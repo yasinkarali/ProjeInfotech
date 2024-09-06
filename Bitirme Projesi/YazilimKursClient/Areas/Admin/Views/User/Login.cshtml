@@ -58,6 +58,12 @@
                 <input type="password" class="form-control" asp-for="@Model.Password" placeholder="Password" required="required">
             </div>
             <div class="form-group">
+                <select asp-for="@Model.Role" required>
+                    <option value="Student">Öğrenci</option>
+                    <option value="Teacher">Öğretmen</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
             </div>
     

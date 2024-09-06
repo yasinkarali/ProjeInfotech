@@ -1,0 +1,68 @@
+﻿@model List<CourseViewModel>
+
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="breadcrumb__links">
+					<a href="./course"><i class="fa fa-home"></i> Anasayfa</a>
+					<span>Kurslar</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Section Begin -->
+<section class="shop spad">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-12 col-md-12">
+				<div class="row">
+
+					@foreach (var item in Model)
+					{
+						<div class="col-lg-4 col-md-6">
+							<div class="product__item">
+								@{
+									string image = "/ui/img/logo.png";
+
+									if (!string.IsNullOrEmpty(item.ImageUrl))
+									{
+										image = "http://localhost:5502/" + @item.ImageUrl;
+									}
+								}
+								<div class="product__item__pic set-bg" data-setbg="@image">
+									<div class="label new">@item.Name</div>
+									<ul class="product__hover">
+										<li><a a href="@image" class="image-popup"><span class="arrow_expand"></span></a></li>
+										@* 	<li><a href="#"><span class="icon_heart_alt"></span></a></li>
+									<li><a href="#"><span class="icon_bag_alt"></span></a></li> *@
+									</ul>
+								</div>
+								<div class="product__item__text">
+									<h6><a href="#">@Html.Raw(@item.Description)</a></h6>
+
+									<div class="product__price">@item.Price TL</div>
+								</div>
+								<div class="product__item__text">
+									<form asp-controller="card" asp-action="AddToCart" method="post">
+										<input type="hidden" name="courseId" value="@item.Id" />
+										<input type="submit" value="Sepete Ekle" />
+									</form>
+
+								</div>
+							</div>
+						</div>
+					}
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Shop Section End -->

@@ -10,6 +10,6 @@ namespace YazilimKurs.Shared.Dtos
     {
         public string UserId { get; set; }
         public int CourseId { get; set; }
-        public int Quantity { get; set; }
+        public int Quantity { get; set; } = 1;
     }
 }

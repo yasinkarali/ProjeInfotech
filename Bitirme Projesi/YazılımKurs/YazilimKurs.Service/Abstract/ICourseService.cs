@@ -16,7 +16,8 @@ namespace YazilimKurs.Service.Abstract
         Task<Response<CourseDto>> AddAsync(AddCourseDto addCourseDto); 
         Task<Response<List<CourseDto>>> GetAllAsync();
         Task<Response<List<CourseDto>>> GetActiveCoursesAsync();
-        Task<Response<List<CourseDto>>> GetCourseStudentsByStudentIdAsync(int id);
+        // Task<Response<List<CourseDto>>> GetCourseStudentsByStudentIdAsync(int id);
+        Task<Response<List<CourseDto>>> GetActiveCoursesWithCourseStudentsAsync();
 
         Task<Response<List<CourseDto>>> GetHomeCoursesAsync();
         Task<Response<CourseDto>> UpdateAsync(EditCourseDto editCourseDto);

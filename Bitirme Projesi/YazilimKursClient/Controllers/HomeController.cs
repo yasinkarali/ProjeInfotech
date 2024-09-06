@@ -26,4 +26,16 @@ public class HomeController : Controller
         }
         return View(rootCourses.Data);
     }
+    public IActionResult Result()
+    {
+        return View();
+    }
+    public IActionResult About()
+    {
+        return View();
+    }
+    public IActionResult Contact()
+    {
+        return View();
+    }
 }

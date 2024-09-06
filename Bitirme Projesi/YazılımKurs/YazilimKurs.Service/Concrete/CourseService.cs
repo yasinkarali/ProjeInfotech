@@ -21,21 +21,22 @@ namespace YazilimKurs.Service.Concrete
             _mapper = mapper;
             _courseStudentRepository = courseStudentRepository;
         }
-        public async Task<Response<List<CourseDto>>> GetCourseStudentsByStudentIdAsync(int studentId)
-        {
-            // TODO 
-            var coursesStudents = await _courseStudentRepository.GetCourseStudentsByStudentIdAsync(studentId);
+
+        //public async Task<Response<List<CourseDto>>> GetCourseStudentsByStudentIdAsync(int studentId)
+        //{
+        //    // TODO 
+        //    var coursesStudents = await _courseStudentRepository.GetCourseStudentsByStudentIdAsync(studentId);
 
 
-            var courses = await _courseRepository.GetActiveCoursesAsync();
-            if (courses == null)
-            {
-                return Response<List<CourseDto>>.Fail("Aktif kurs bulunamadı", 404);
-            }
-            var coursesList = _mapper.Map<List<CourseDto>>(courses);
-            return Response<List<CourseDto>>.Success(coursesList, 200);
+        //    var courses = await _courseRepository.GetActiveCoursesAsync();
+        //    if (courses == null)
+        //    {
+        //        return Response<List<CourseDto>>.Fail("Aktif kurs bulunamadı", 404);
+        //    }
+        //    var coursesList = _mapper.Map<List<CourseDto>>(courses);
+        //    return Response<List<CourseDto>>.Success(coursesList, 200);
+        //}
 
-        }
         public async Task<Response<CourseDto>> AddAsync(AddCourseDto addCourseDto)
         {
             Course course = _mapper.Map<Course>(addCourseDto);
@@ -64,6 +65,18 @@ namespace YazilimKurs.Service.Concrete
         }
 
         public async Task<Response<List<CourseDto>>> GetActiveCoursesAsync()
+        {
+            var courses = await _courseRepository.GetActiveCoursesWithCourseStudentsAsync();
+            if (courses == null)
+            {
+                return Response<List<CourseDto>>.Fail("Aktif kurs bulunamadı", 404);
+            }
+            var coursesList = _mapper.Map<List<CourseDto>>(courses);
+            return Response<List<CourseDto>>.Success(coursesList, 200);
+
+        }
+
+        public async Task<Response<List<CourseDto>>> GetActiveCoursesWithCourseStudentsAsync()
         {
             var courses = await _courseRepository.GetActiveCoursesAsync();
             if (courses == null)
@@ -149,7 +162,9 @@ namespace YazilimKurs.Service.Concrete
             {
                 return Response<CourseDto>.Fail("Güncellenecek kurs bulunamadı", 404);
             }
-            await _courseRepository.UpdateAsync(editedCourse);
+            //var result = await _courseRepository.UpdateAsync(editedCourse);
+
+            var result = await _courseRepository.UpdateCourseAsync(editCourseDto.Id, editCourseDto.Price, editCourseDto.Name, editCourseDto.Description, editCourseDto.ImageUrl, editCourseDto.IsActive);
             CourseDto courseDto = _mapper.Map<CourseDto>(editedCourse);
             return Response<CourseDto>.Success(courseDto, 200);
         }
